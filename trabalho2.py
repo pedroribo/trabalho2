@@ -5,7 +5,30 @@ class User:
         self.role = role
 
     def set_name(self):
-        self.name = input('Nome completo: ')
+        #nameprototype = input('Nome completo: ')
+        max_length = 30
+        n = 1
+        while n == 1:
+            nameprototype = input('Nome completo: ')
+            if len(nameprototype) > max_length:
+                print('O nome deve possuir no máximo 30 caracteres.')
+            else:
+                n = 2
+        if nameprototype[0].isupper() == True:
+            pass
+        else:
+            raise Exception('A primeira letra dos nomes deve ser maiúscula.')
+        i = 0
+        for i in range(0, len(nameprototype)):
+            if nameprototype[i] == ' ':
+                if nameprototype[i + 1].isupper() == False:
+                    raise Exception('A primeira letra dos nomes deve ser maiúscula.')
+                elif nameprototype[i].isnumeric() == True:
+                    raise TypeError('O nome deve ser composto apenas por letras.')
+            elif nameprototype[i].isnumeric() == True:
+                raise TypeError('O nome deve ser composto apenas por letras.')
+            i = i + 1
+        self.name = nameprototype
 
     def set_password(self):
         self.password = input('Senha: ')
